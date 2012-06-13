@@ -1,0 +1,5 @@
+# IDE
+.idea/
+
+# Configuration files
+app/protected/config/main.php
