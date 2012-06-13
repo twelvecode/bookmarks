@@ -1,8 +1,13 @@
 <?php
 
 namespace TwelveCode\Core\Component\Controller;
+use TwelveCode\Core\Component;
 
-class Front extends \CController
+/**
+ * Frontend controller base
+ */
+
+class Front extends Component\Controller
 {
     /**
      * @var string the default layout for the controller view. Defaults to '//layouts/column1',
