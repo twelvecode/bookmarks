@@ -1,17 +1,13 @@
-Directories
-===========
+# Bookmarks
 
-app/
-----
+## Directory structure
 
-This directory contains the actual Yii application (the DocumentRoot should point there).
+As follows:
 
-lib/
-----
+* `app/` - This directory contains the actual Yii application (the DocumentRoot should point there).
+* `lib/` - Contains libraries (TwelveCode) used by the application (including models)
+* `yii/` - Contains the framework used by the application (bundled for ease)
 
-Contains libraries (TwelveCode) used by the application (including models)
+## License
 
-yii/
-----
-
-Contains the framework used by the application (bundled for ease)
+Didn't pick up any yet.
