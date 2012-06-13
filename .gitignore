@@ -1,2 +1,5 @@
+# IDE
 .idea/
-app/config/main.php     # main configuration file
+
+# Configuration files
+app/protected/config/main.php
