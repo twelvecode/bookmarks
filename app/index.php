@@ -10,7 +10,7 @@ defined('YII_DEBUG') or define('YII_DEBUG',true);
 defined('YII_TRACE_LEVEL') or define('YII_TRACE_LEVEL',3);
 
 // TwelveCode Autoloader Register
-require_once (dirname(__FILE__) . '/protected/modules/TwelveCode/AutoLoader.php');
+require_once (dirname(__FILE__) . '/../lib/TwelveCode/AutoLoader.php');
 
 spl_autoload_register(array('\TwelveCode\AutoLoader', 'autoLoad'));
 

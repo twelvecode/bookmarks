@@ -19,9 +19,6 @@ return array(
 	),
 
 	'modules'=>array(
-        'account' => array(
-            'class' => '\TwelveCode\Account'
-        ),
 		// uncomment the following to enable the Gii tool
 		/*
 		'gii'=>array(
