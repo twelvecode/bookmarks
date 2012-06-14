@@ -1,6 +1,8 @@
 <?php
 
-class SiteController extends Controller
+use \TwelveCode\Core\Component\Controller;
+
+class SiteController extends Controller\Front
 {
 	/**
 	 * Declares class-based actions.
@@ -100,4 +102,8 @@ class SiteController extends Controller
 		Yii::app()->user->logout();
 		$this->redirect(Yii::app()->homeUrl);
 	}
+
+    public function actionTest()
+    {
+    }
 }
