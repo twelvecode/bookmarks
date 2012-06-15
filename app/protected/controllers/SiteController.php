@@ -1,8 +1,6 @@
 <?php
 
-use \TwelveCode\Core\Component\Controller;
-
-class SiteController extends Controller\Front
+class SiteController extends FrontController
 {
 	/**
 	 * Declares class-based actions.
