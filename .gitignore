@@ -6,4 +6,4 @@ app/protected/config/main.php
 
 # Log files and runtime information
 app/protected/runtime/
-app/protected/assets/
+app/assets/
