@@ -3,7 +3,7 @@
 class DefaultController extends FrontController
 {
 	public function actionIndex()
-	{
-		$this->render('index');
-	}
+    {
+        $this->render('index');
+    }
 }
