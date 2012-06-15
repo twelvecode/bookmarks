@@ -1,6 +1,6 @@
 <?php
 
-class SiteController extends Controller
+class SiteController extends FrontController
 {
 	/**
 	 * Declares class-based actions.
@@ -100,4 +100,8 @@ class SiteController extends Controller
 		Yii::app()->user->logout();
 		$this->redirect(Yii::app()->homeUrl);
 	}
+
+    public function actionTest()
+    {
+    }
 }
