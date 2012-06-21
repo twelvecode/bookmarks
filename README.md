@@ -9,4 +9,5 @@ As follows:
 
 ## License
 
-Didn't pick up any yet.
+This software is licensed under the terms of Added Mozilla Public License Version 2.0.
+Please refer to the `LICENSE.md` file for complete license information.
