@@ -1,0 +1,84 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<database name="bookmarks" defaultIdMethod="native">
+
+    <table name="bookmark">
+        <column name="id" type="integer" primaryKey="true" autoIncrement="true" />
+        <column name="title" type="varchar" size="256" />
+        <column name="description" type="varchar" size="1024" />
+        <column name="location" type="varchar" size="256" />
+        <column name="category_id" type="integer" />
+        <column name="user_id" type="integer" />
+        <foreign-key foreignTable="user">
+            <reference local="user_id" foreign="id" />
+        </foreign-key>
+        <behavior name="timestampable" />
+    </table>
+
+    <table name="category">
+        <column name="id" type="integer" primaryKey="true" autoIncrement="true" />
+        <column name="name" type="varchar" size="256" />
+        <column name="parent_category_id" type="integer" />
+        <foreign-key foreignTable="category">
+            <reference local="parent_category_id" foreign="id" />
+        </foreign-key>
+        <behavior name="nested_set" />
+        <behavior name="timestampable" />
+    </table>
+
+    <table name="tag">
+        <column name="id" type="integer" primaryKey="true" autoIncrement="true" />
+        <column name="name" type="varchar" size="256" />
+    </table>
+
+    <table name="user">
+        <column name="id" type="integer" primaryKey="true" autoIncrement="true" />
+        <column name="login" type="varchar" size="256" />
+        <column name="password" type="varchar" size="256" />
+        <column name="name" type="varchar" size="256" />
+        <behavior name="timestampable" />
+    </table>
+
+    <table name="user_group">
+        <column name="id" type="integer" primaryKey="true" autoIncrement="true" />
+        <column name="name" type="varchar" size="256" />
+        <column name="owner_id" type="integer" />
+    </table>
+
+    <table name="user_group_member">
+        <column name="group_id" type="integer" primaryKey="true" />
+        <column name="user_id" type="integer" primaryKey="true" />
+    </table>
+
+    <table name="user_share_category_request">
+        <column name="id" type="integer" primaryKey="true" autoIncrement="true" />
+    </table>
+
+    <table name="group_share_category_request">
+        <column name="id" type="integer" primaryKey="true" autoIncrement="true" />
+    </table>
+
+    <table name="user_shared_category">
+        <column name="category_id" type="integer" primaryKey="true" />
+        <column name="user_id" type="integer" primaryKey="true" />
+        <foreign-key foreignTable="category">
+            <reference local="category_id" foreign="id" />
+        </foreign-key>
+        <foreign-key foreignTable="user">
+            <reference local="user_id" foreign="id" />
+        </foreign-key>
+        <behavior name="timestampable" />
+    </table>
+
+    <table name="group_shared_category">
+        <column name="category_id" type="integer" primaryKey="true" />
+        <column name="group_id" type="integer" primaryKey="true" />
+        <foreign-key foreignTable="category">
+            <reference local="category_id" foreign="id" />
+        </foreign-key>
+        <foreign-key foreignTable="user_group">
+            <reference local="group_id" foreign="id" />
+        </foreign-key>
+        <behavior name="timestampable" />
+    </table>
+
+</database>
