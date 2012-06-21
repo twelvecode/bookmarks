@@ -47,6 +47,7 @@
 	<div class="clear"></div>
 
 	<div id="footer">
+        Bookmarks v<?= Yii::app()->params['version']; ?><br />
 		Copyright &copy; <?php echo date('Y'); ?> by My Company.<br/>
 		All Rights Reserved.<br/>
 		<?php echo Yii::powered(); ?>
