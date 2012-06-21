@@ -9,6 +9,10 @@
 
     </target>
 
+    <target name="config">
+        <copy file="app/protected/config/main.template.php" tofile="app/protected/config/main.php" />
+    </target>
+
     <target name="purgeModels">
         <delete dir="${modules.dir}/core/models" />
         <delete dir="${modules.dir}/account/models" />
