@@ -6,8 +6,8 @@
         <!--<level>7</level>-->
     <!--</log>-->
     <propel>
-        <datasources default="bookmarks">
-            <datasource id="bookstore">
+        <datasources default="${app.database.name}">
+            <datasource id="${app.database.name}">
                 <adapter>${app.database.connector}</adapter>
                 <connection>
                     <!--<classname>DebugPDO</classname>-->
