@@ -9,5 +9,6 @@ app/protected/runtime/
 app/assets/
 
 # Propel regenerated directories
-*/om/*
-*/map/*
+om/
+map/
+*.map
