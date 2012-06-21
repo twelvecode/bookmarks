@@ -3,6 +3,9 @@
 
 # Configuration files
 app/protected/config/main.php
+app/protected/config/modules-conf.php
+app/protected/config/classmap-modules-conf.php
+
 
 # Log files and runtime information
 app/protected/runtime/

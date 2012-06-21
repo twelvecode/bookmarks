@@ -1,6 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <database name="bookmarks" defaultIdMethod="native" package="bookmarks.modules">
 
+    <table name="config" package="core.models">
+        <column name="name" type="varchar" size="128" primaryKey="true" />
+        <column name="value" type="longvarchar" />
+    </table>
+
     <table name="bookmark" package="bookmarks.models">
         <column name="id" type="integer" primaryKey="true" autoIncrement="true" />
         <column name="title" type="varchar" size="256" />
