@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="utf-8"?>
+<project name="Bookmarks" default="development">
+
+    <property name="modules.dir" value="app/protected/modules" />
+
+    <property file="build.properties" />
+
+    <target name="development">
+
+    </target>
+
+    <target name="config">
+        <copy file="app/protected/config/main.template.php" tofile="app/protected/config/main.php" />
+    </target>
+
+    <target name="purgeModels">
+        <delete dir="${modules.dir}/core/models" />
+        <delete dir="${modules.dir}/account/models" />
+        <delete dir="${modules.dir}/bookmarks/models" />
+        <delete dir="${modules.dir}/bookmarks/modules/social/models" />
+        <delete dir="${modules.dir}/social/models" />
+    </target>
+
+    <target name="propel">
+        <copy file="runtime-conf.template.xml" tofile="runtime-conf.xml">
+            <filterchain>
+                <expandproperties />
+            </filterchain>
+        </copy>
+
+        <if>
+            <equals arg1="${host.os}" arg2="WINNT" />
+            <then>
+                <exec command="..\vendors\propel\generator\bin\propel-gen.bat convert-conf" passthru="true" />
+                <exec command="..\vendors\propel\generator\bin\propel-gen.bat om" passthru="true" />
+                <exec command="..\vendors\propel\generator\bin\propel-gen.bat sql" passthru="true" />
+                <exec command="..\vendors\propel\generator\bin\propel-gen.bat insert-sql" passthru="true" />
+            </then>
+            <else>
+                <exec command="../vendors/propel/generator/bin/propel-gen convert-conf" passthru="true" />
+                <exec command="../vendors/propel/generator/bin/propel-gen om" passthru="true" />
+                <exec command="../vendors/propel/generator/bin/propel-gen sql" passthru="true" />
+                <exec command="../vendors/propel/generator/bin/propel-gen insert-sql" passthru="true" />
+            </else>
+        </if>
+
+        <delete file="runtime-conf.xml" />
+    </target>
+
+</project>

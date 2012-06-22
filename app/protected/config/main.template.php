@@ -8,9 +8,10 @@
 return array(
     'basePath'=>dirname(__FILE__).DIRECTORY_SEPARATOR.'..',
     'name'=>'Bookmarks',
+    'theme' => 'classic',
 
     // preloading 'log' component
-    'preload'=>array('log'),
+    'preload'=>array('log', 'bootstrap'),
 
     // autoloading model and component classes
     'import'=>array(
@@ -26,9 +27,9 @@ return array(
 
     // application component
     'components'=>array(
-        'request' => array(
-            //'scriptUrl' => '/index.php',
-        ),
+//        'request' => array(
+//            'scriptUrl' => '/bookmarks/app/index.php',
+//        ),
 
         'user'=>array(
             // enable cookie-based authentication
@@ -43,7 +44,7 @@ return array(
                 '<controller:\w+>/<action:\w+>/<id:\d+>'=>'<controller>/<action>',
                 '<controller:\w+>/<action:\w+>'=>'<controller>/<action>',
             ),
-            'showScriptName' => false,
+//            'showScriptName' => false,
         ),
 
         // uncomment the following to use a MySQL database
@@ -75,12 +76,33 @@ return array(
                     */
             ),
         ),
+
+        'bootstrap'=>array(
+            'class' => 'ext.bootstrap.components.Bootstrap',
+        ),
+//        'clientScript' => array(
+//            'class' => 'CClientScript',
+//            'packages' => array(
+//                'bootstrap' => array(
+//                    'basePath' => realpath(dirname(__FILE__) . '/../../themes/classic/vendors/bootstrap'),
+//                    'js' => array(
+//                        'js/bootstrap.min.js',
+//                    ),
+//                    'css' => array(
+//                        'css/bootstrap.min.css',
+//                    ),
+//                ), // bootstrap
+//            ), // packages
+//        ), // clientScript
     ),
+
+
 
     // application-level parameters that can be accessed
     // using Yii::app()->params['paramName']
     'params'=>array(
         // this is used in contact page
-        'adminEmail'=>'webmaster@example.com',
+        'adminEmail'=>'gm.godlewski@twelvecode.com',
+        'version' => '0.1.0',
     ),
 );
