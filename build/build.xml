@@ -31,16 +31,16 @@
         <if>
             <equals arg1="${host.os}" arg2="WINNT" />
             <then>
-                <exec command="vendors\propel\generator\bin\propel-gen.bat convert-conf" passthru="true" />
-                <exec command="vendors\propel\generator\bin\propel-gen.bat om" passthru="true" />
-                <exec command="vendors\propel\generator\bin\propel-gen.bat sql" passthru="true" />
-                <exec command="vendors\propel\generator\bin\propel-gen.bat insert-sql" passthru="true" />
+                <exec command="..\vendors\propel\generator\bin\propel-gen.bat convert-conf" passthru="true" />
+                <exec command="..\vendors\propel\generator\bin\propel-gen.bat om" passthru="true" />
+                <exec command="..\vendors\propel\generator\bin\propel-gen.bat sql" passthru="true" />
+                <exec command="..\vendors\propel\generator\bin\propel-gen.bat insert-sql" passthru="true" />
             </then>
             <else>
-                <exec command="./vendors/propel/generator/bin/propel-gen convert-conf" passthru="true" />
-                <exec command="./vendors/propel/generator/bin/propel-gen om" passthru="true" />
-                <exec command="./vendors/propel/generator/bin/propel-gen sql" passthru="true" />
-                <exec command="./vendors/propel/generator/bin/propel-gen insert-sql" passthru="true" />
+                <exec command="../vendors/propel/generator/bin/propel-gen convert-conf" passthru="true" />
+                <exec command="../vendors/propel/generator/bin/propel-gen om" passthru="true" />
+                <exec command="../vendors/propel/generator/bin/propel-gen sql" passthru="true" />
+                <exec command="../vendors/propel/generator/bin/propel-gen insert-sql" passthru="true" />
             </else>
         </if>
 
