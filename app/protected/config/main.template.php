@@ -13,16 +13,18 @@ return array(
     // preloading 'log' component
     'preload'=>array('log', 'bootstrap'),
 
+    'modules'=>array(
+        'core',
+        'core',
+        'account',
+        'bookmarks',
+    ),
+
     // autoloading model and component classes
     'import'=>array(
         'application.models.*',
         'application.components.*',
-    ),
-
-    'modules'=>array(
-        'core',
-        'account',
-        'bookmarks',
+        'core.components.*',
     ),
 
     // application component
