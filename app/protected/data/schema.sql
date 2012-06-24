@@ -17,65 +17,6 @@ CREATE TABLE `config`
 ) ENGINE=MyISAM;
 
 -- ---------------------------------------------------------------------
--- bookmark
--- ---------------------------------------------------------------------
-
-DROP TABLE IF EXISTS `bookmark`;
-
-CREATE TABLE `bookmark`
-(
-    `id` INTEGER NOT NULL AUTO_INCREMENT,
-    `title` VARCHAR(256),
-    `description` VARCHAR(1024),
-    `location` VARCHAR(256),
-    `category_id` INTEGER,
-    `user_id` INTEGER,
-    `created_at` DATETIME,
-    `updated_at` DATETIME,
-    PRIMARY KEY (`id`),
-    INDEX `bookmark_FI_1` (`user_id`),
-    CONSTRAINT `bookmark_FK_1`
-        FOREIGN KEY (`user_id`)
-        REFERENCES `user` (`id`)
-) ENGINE=MyISAM;
-
--- ---------------------------------------------------------------------
--- category
--- ---------------------------------------------------------------------
-
-DROP TABLE IF EXISTS `category`;
-
-CREATE TABLE `category`
-(
-    `id` INTEGER NOT NULL AUTO_INCREMENT,
-    `name` VARCHAR(256),
-    `parent_category_id` INTEGER,
-    `tree_left` INTEGER,
-    `tree_right` INTEGER,
-    `tree_level` INTEGER,
-    `created_at` DATETIME,
-    `updated_at` DATETIME,
-    PRIMARY KEY (`id`),
-    INDEX `category_FI_1` (`parent_category_id`),
-    CONSTRAINT `category_FK_1`
-        FOREIGN KEY (`parent_category_id`)
-        REFERENCES `category` (`id`)
-) ENGINE=MyISAM;
-
--- ---------------------------------------------------------------------
--- tag
--- ---------------------------------------------------------------------
-
-DROP TABLE IF EXISTS `tag`;
-
-CREATE TABLE `tag`
-(
-    `id` INTEGER NOT NULL AUTO_INCREMENT,
-    `name` VARCHAR(256),
-    PRIMARY KEY (`id`)
-) ENGINE=MyISAM;
-
--- ---------------------------------------------------------------------
 -- user
 -- ---------------------------------------------------------------------
 
@@ -93,98 +34,87 @@ CREATE TABLE `user`
 ) ENGINE=MyISAM;
 
 -- ---------------------------------------------------------------------
--- user_group
+-- bookmark_tag
 -- ---------------------------------------------------------------------
 
-DROP TABLE IF EXISTS `user_group`;
+DROP TABLE IF EXISTS `bookmark_tag`;
 
-CREATE TABLE `user_group`
+CREATE TABLE `bookmark_tag`
 (
     `id` INTEGER NOT NULL AUTO_INCREMENT,
     `name` VARCHAR(256),
-    `owner_id` INTEGER,
     PRIMARY KEY (`id`)
 ) ENGINE=MyISAM;
 
 -- ---------------------------------------------------------------------
--- user_group_member
+-- bookmark_category
 -- ---------------------------------------------------------------------
 
-DROP TABLE IF EXISTS `user_group_member`;
+DROP TABLE IF EXISTS `bookmark_category`;
 
-CREATE TABLE `user_group_member`
-(
-    `group_id` INTEGER NOT NULL,
-    `user_id` INTEGER NOT NULL,
-    PRIMARY KEY (`group_id`,`user_id`)
-) ENGINE=MyISAM;
-
--- ---------------------------------------------------------------------
--- user_share_category_request
--- ---------------------------------------------------------------------
-
-DROP TABLE IF EXISTS `user_share_category_request`;
-
-CREATE TABLE `user_share_category_request`
+CREATE TABLE `bookmark_category`
 (
     `id` INTEGER NOT NULL AUTO_INCREMENT,
-    PRIMARY KEY (`id`)
-) ENGINE=MyISAM;
-
--- ---------------------------------------------------------------------
--- group_share_category_request
--- ---------------------------------------------------------------------
-
-DROP TABLE IF EXISTS `group_share_category_request`;
-
-CREATE TABLE `group_share_category_request`
-(
-    `id` INTEGER NOT NULL AUTO_INCREMENT,
-    PRIMARY KEY (`id`)
-) ENGINE=MyISAM;
-
--- ---------------------------------------------------------------------
--- user_shared_category
--- ---------------------------------------------------------------------
-
-DROP TABLE IF EXISTS `user_shared_category`;
-
-CREATE TABLE `user_shared_category`
-(
-    `category_id` INTEGER NOT NULL,
-    `user_id` INTEGER NOT NULL,
+    `name` VARCHAR(256),
+    `description` VARCHAR(512),
+    `user_id` INTEGER,
+    `tree_left` INTEGER,
+    `tree_right` INTEGER,
+    `tree_level` INTEGER,
     `created_at` DATETIME,
     `updated_at` DATETIME,
-    PRIMARY KEY (`category_id`,`user_id`),
-    INDEX `user_shared_category_FI_2` (`user_id`),
-    CONSTRAINT `user_shared_category_FK_1`
-        FOREIGN KEY (`category_id`)
-        REFERENCES `category` (`id`),
-    CONSTRAINT `user_shared_category_FK_2`
+    PRIMARY KEY (`id`),
+    INDEX `bookmark_category_FI_1` (`user_id`),
+    CONSTRAINT `bookmark_category_FK_1`
         FOREIGN KEY (`user_id`)
         REFERENCES `user` (`id`)
 ) ENGINE=MyISAM;
 
 -- ---------------------------------------------------------------------
--- group_shared_category
+-- bookmark
 -- ---------------------------------------------------------------------
 
-DROP TABLE IF EXISTS `group_shared_category`;
+DROP TABLE IF EXISTS `bookmark`;
 
-CREATE TABLE `group_shared_category`
+CREATE TABLE `bookmark`
 (
-    `category_id` INTEGER NOT NULL,
-    `group_id` INTEGER NOT NULL,
+    `id` INTEGER NOT NULL AUTO_INCREMENT,
+    `title` VARCHAR(256),
+    `description` VARCHAR(1024),
+    `location` VARCHAR(256),
+    `category_id` INTEGER,
+    `user_id` INTEGER,
     `created_at` DATETIME,
     `updated_at` DATETIME,
-    PRIMARY KEY (`category_id`,`group_id`),
-    INDEX `group_shared_category_FI_2` (`group_id`),
-    CONSTRAINT `group_shared_category_FK_1`
+    PRIMARY KEY (`id`),
+    INDEX `bookmark_FI_1` (`user_id`),
+    INDEX `bookmark_FI_2` (`category_id`),
+    CONSTRAINT `bookmark_FK_1`
+        FOREIGN KEY (`user_id`)
+        REFERENCES `user` (`id`),
+    CONSTRAINT `bookmark_FK_2`
         FOREIGN KEY (`category_id`)
-        REFERENCES `category` (`id`),
-    CONSTRAINT `group_shared_category_FK_2`
-        FOREIGN KEY (`group_id`)
-        REFERENCES `user_group` (`id`)
+        REFERENCES `bookmark_category` (`id`)
+) ENGINE=MyISAM;
+
+-- ---------------------------------------------------------------------
+-- bookmark_tag_relation
+-- ---------------------------------------------------------------------
+
+DROP TABLE IF EXISTS `bookmark_tag_relation`;
+
+CREATE TABLE `bookmark_tag_relation`
+(
+    `bookmark_id` INTEGER NOT NULL,
+    `tag_id` INTEGER NOT NULL,
+    PRIMARY KEY (`bookmark_id`,`tag_id`),
+    INDEX `bookmark_tag_relation_FI_2` (`tag_id`),
+    CONSTRAINT `bookmark_tag_relation_FK_1`
+        FOREIGN KEY (`bookmark_id`)
+        REFERENCES `bookmark` (`id`),
+    CONSTRAINT `bookmark_tag_relation_FK_2`
+        FOREIGN KEY (`tag_id`)
+        REFERENCES `bookmark_tag` (`id`)
 ) ENGINE=MyISAM;
 
 # This restores the fkey checks, after having unset them earlier

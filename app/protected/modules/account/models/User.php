@@ -1,5 +1,8 @@
 <?php
 
+namespace TwelveCode\Account\Model;
+
+use TwelveCode\Account\Model\om\BaseUser;
 
 
 /**
@@ -13,6 +16,33 @@
  *
  * @package    propel.generator.account.models
  */
-class User extends BaseUser {
+class User extends BaseUser
+{
+
+//-----------------------------------------------------------------------------
+
+    /**
+     * Encrypts given password
+     *
+     * @static
+     *
+     * @param string $password The password to be encrypted
+     *
+     * @return string Encrypted password
+     */
+
+    public static function encryptPassword($password)
+    {
+        return md5($password);
+    }
+
+//-----------------------------------------------------------------------------
+
+    public function setPassword($v)
+    {
+        return parent::setPassword(static::encryptPassword($v));
+    }
+
+//-----------------------------------------------------------------------------
 
 } // User

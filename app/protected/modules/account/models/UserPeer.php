@@ -1,5 +1,8 @@
 <?php
 
+namespace TwelveCode\Account\Model;
+
+use TwelveCode\Account\Model\om\BaseUserPeer;
 
 
 /**
