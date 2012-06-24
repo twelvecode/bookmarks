@@ -4,7 +4,7 @@ class AuthController extends FrontController
 {
     public function actionIndex()
     {
-
+        echo 'Authorization index';
     }
 
     public function actionLogin()

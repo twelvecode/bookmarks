@@ -19,4 +19,28 @@ class CoreController extends \CController
      * for more details on how to specify this property.
      */
     public $breadcrumbs=array();
-}
+
+//-----------------------------------------------------------------------------
+
+    protected function beforeAction($action)
+    {
+        if (!parent::beforeAction($action)) {
+            return false;
+        }
+
+        $lang = Yii::app()->getRequest()->getParam('lang');
+
+        if ($lang === null) {
+            $this->redirect(array('/en'));
+        } else {
+            Yii::app()->setLanguage($lang);
+        }
+
+        //Yii::app()->setLanguage(Yii::app()->user->getState('language'));
+
+        return true;
+    }
+
+//-----------------------------------------------------------------------------
+
+} // CoreController
