@@ -1,12 +1,74 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<database name="bookmarks" defaultIdMethod="native" package="bookmarks.modules">
+<database name="bookmarks"
+          defaultIdMethod="native"
+          package="bookmarks.modules">
 
-    <table name="config" package="core.models">
+    <!--
+        System configuration table
+    -->
+
+    <table name="config"
+           package="core.models"
+           namespace="${app.ns.core}\Model"
+           phpName="Config">
         <column name="name" type="varchar" size="128" primaryKey="true" />
         <column name="value" type="longvarchar" />
     </table>
 
-    <table name="bookmark" package="bookmarks.models">
+    <!--
+        User account model
+    -->
+
+    <table name="user"
+           package="account.models"
+           namespace="${app.ns.account}\Model"
+           phpName="User">
+        <column name="id" type="integer" primaryKey="true" autoIncrement="true" />
+        <column name="login" type="varchar" size="256" />
+        <column name="password" type="varchar" size="256" />
+        <column name="name" type="varchar" size="256" />
+        <behavior name="timestampable" />
+    </table>
+
+    <!--
+        Typical bookmark tag
+    -->
+
+    <table name="bookmark_tag"
+           package="bookmarks.models.Bookmark"
+           namespace="${app.ns.bookmarks}\Model\Bookmark"
+           phpName="Tag">
+        <column name="id" type="integer" primaryKey="true" autoIncrement="true" />
+        <column name="name" type="varchar" size="256" />
+    </table>
+
+    <!--
+        A bookmark category
+    -->
+
+    <table name="bookmark_category"
+           package="bookmarks.models.Bookmark"
+           namespace="${app.ns.bookmarks}\Model\Bookmark"
+           phpName="Category">
+        <column name="id" type="integer" primaryKey="true" autoIncrement="true" />
+        <column name="name" type="varchar" size="256" />
+        <column name="description" type="varchar" size="512" />
+        <column name="user_id" type="integer" />
+        <foreign-key foreignTable="user">
+            <reference local="user_id" foreign="id" />
+        </foreign-key>
+        <behavior name="nested_set" />
+        <behavior name="timestampable" />
+    </table>
+
+    <!--
+        The bookmark entity
+    -->
+
+    <table name="bookmark"
+           package="bookmarks.models"
+           namespace="${app.ns.bookmarks}\Model"
+           phpName="Bookmark">
         <column name="id" type="integer" primaryKey="true" autoIncrement="true" />
         <column name="title" type="varchar" size="256" />
         <column name="description" type="varchar" size="1024" />
@@ -16,34 +78,34 @@
         <foreign-key foreignTable="user">
             <reference local="user_id" foreign="id" />
         </foreign-key>
-        <behavior name="timestampable" />
-    </table>
-
-    <table name="category" package="bookmarks.models">
-        <column name="id" type="integer" primaryKey="true" autoIncrement="true" />
-        <column name="name" type="varchar" size="256" />
-        <column name="parent_category_id" type="integer" />
-        <foreign-key foreignTable="category">
-            <reference local="parent_category_id" foreign="id" />
+        <foreign-key foreignTable="bookmark_category">
+            <reference local="category_id" foreign="id" />
         </foreign-key>
-        <behavior name="nested_set" />
         <behavior name="timestampable" />
     </table>
 
-    <table name="tag" package="bookmarks.models">
-        <column name="id" type="integer" primaryKey="true" autoIncrement="true" />
-        <column name="name" type="varchar" size="256" />
+
+    <!--
+        Bookmark <-> Tag Many to Many relation
+    -->
+
+    <table name="bookmark_tag_relation"
+           isCrossRef="true"
+           package="bookmarks.models.Bookmark.Tag"
+           namespace="${app.ns.bookmarks}\Model\Bookmark\Tag"
+           phpName="Relation">
+        <column name="bookmark_id" type="integer" primaryKey="true" />
+        <column name="tag_id" type="integer" primaryKey="true" />
+        <foreign-key foreignTable="bookmark">
+            <reference local="bookmark_id" foreign="id" />
+        </foreign-key>
+        <foreign-key foreignTable="bookmark_tag">
+            <reference local="tag_id" foreign="id" />
+        </foreign-key>
     </table>
 
-    <table name="user" package="account.models">
-        <column name="id" type="integer" primaryKey="true" autoIncrement="true" />
-        <column name="login" type="varchar" size="256" />
-        <column name="password" type="varchar" size="256" />
-        <column name="name" type="varchar" size="256" />
-        <behavior name="timestampable" />
-    </table>
-
-    <table name="user_group" package="social.models">
+    <!--
+    <table name="user_group" package="social.models" namespace="${app.ns.social}\Model">
         <column name="id" type="integer" primaryKey="true" autoIncrement="true" />
         <column name="name" type="varchar" size="256" />
         <column name="owner_id" type="integer" />
@@ -85,5 +147,5 @@
         </foreign-key>
         <behavior name="timestampable" />
     </table>
-
+    -->
 </database>
