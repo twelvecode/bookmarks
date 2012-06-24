@@ -8,27 +8,23 @@
 return array(
     'basePath'=>dirname(__FILE__).DIRECTORY_SEPARATOR.'..',
     'name'=>'Bookmarks',
-
     'theme' => 'classic',
-    'language' => 'pl',
 
     // preloading 'log' component
     'preload'=>array('log', 'bootstrap'),
-
-    'modules'=>array(
-        'core',
-        'account',
-        'bookmarks',
-    ),
-
-
 
     // autoloading model and component classes
     'import'=>array(
         'application.models.*',
         'application.components.*',
         'core.components.*',
-        'account.components.*',
+    ),
+
+    'modules'=>array(
+        'core',
+        'core',
+        'account',
+        'bookmarks',
     ),
 
     // application component
@@ -49,12 +45,6 @@ return array(
                 '<controller:\w+>/<id:\d+>'=>'<controller>/view',
                 '<controller:\w+>/<action:\w+>/<id:\d+>'=>'<controller>/<action>',
                 '<controller:\w+>/<action:\w+>'=>'<controller>/<action>',
-                '<lang:\w+>/' => 'site/index',
-                '<lang:\w+>/<controller:\w+>' => '<controller>/index',
-                '<lang:\w+>/<controller:\w+>/<action:\w+>' => '<controller>/<action>',
-                '<lang:\w+>/<module:\w+>/<controller:\w+>/<action:\w+>' => '<module>/<controller>/<action>',
-                '<lang:\w+>/<module:\w+>/<subModule:\w+>/<controller:\w+>/<action:\w+>' => '<module>/<subModule>/<controller>/<action>',
-
             ),
 //            'showScriptName' => false,
         ),

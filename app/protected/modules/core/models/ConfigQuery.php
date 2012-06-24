@@ -1,5 +1,8 @@
 <?php
 
+namespace TwelveCode\Core\Model;
+
+use TwelveCode\Core\Model\om\BaseConfigQuery;
 
 
 /**

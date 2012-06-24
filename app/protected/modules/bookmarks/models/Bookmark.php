@@ -1,5 +1,8 @@
 <?php
 
+namespace TwelveCode\Bookmark\Model;
+
+use TwelveCode\Bookmark\Model\om\BaseBookmark;
 
 
 /**
