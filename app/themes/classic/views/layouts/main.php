@@ -22,7 +22,7 @@
 				array('label'=>'About', 'url'=>array('/' . Yii::app()->language . '/site/page', 'view'=>'about')),
 				array('label'=>'Contact', 'url'=>array('/' . Yii::app()->language . '/site/contact')),
 				array('label'=>'Login', 'url' => array('/' . Yii::app()->language . '/account/auth/login'), 'visible'=>Yii::app()->user->isGuest),
-				array('label'=>'Logout ('.Yii::app()->user->name.')', 'url'=>array('/site/logout'), 'visible'=>!Yii::app()->user->isGuest)
+				array('label'=>'Logout ('.Yii::app()->user->name.')', 'url'=>array('/' . Yii::app()->language . '/account/auth/logout'), 'visible'=>!Yii::app()->user->isGuest)
 			),
 		)); ?>
 	</div><!-- mainmenu -->

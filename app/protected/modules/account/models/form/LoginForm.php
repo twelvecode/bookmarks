@@ -23,6 +23,35 @@ class LoginForm extends \CFormModel
 
     public $keepSigned;
 
+    /**
+     * User identity representing the user
+     * @var UserIdentity
+     */
+
+    protected $identity;
+
+//-----------------------------------------------------------------------------
+
+    public function authenticate($username, $password)
+    {
+        if ($this->identity == null) {
+            $this->identity = new UserIdentity($username, $password);
+        }
+
+        return $this->identity->authenticate();
+    }
+
+//-----------------------------------------------------------------------------
+
+    public function login()
+    {
+        if ($this->authenticate($this->login, $this->password)) {
+            Yii::app()->user->login($this->identity);
+        } else {
+            $this->addError('login', Yii::t('AccountModule.forms', 'Invalid login and/or password'));
+        }
+    }
+
 //-----------------------------------------------------------------------------
 
     public function rules()
