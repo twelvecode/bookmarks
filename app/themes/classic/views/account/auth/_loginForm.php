@@ -1,5 +1,3 @@
-<p>The form goes here!</p>
-
 <?php $form = $this->beginWidget('bootstrap.widgets.BootActiveForm', array(
     'id' => 'loginForm',
     'htmlOptions' => array('class' => 'well')
@@ -11,7 +9,8 @@
 
 <?php $this->widget('bootstrap.widgets.BootButton', array(
     'buttonType' => 'submit',
-    'icon'       => 'ok',
+    'type'       => 'primary',
+    'icon'       => 'ok white',
     'label'      => Yii::t('account', 'Log me in!'),
 )); ?>
 

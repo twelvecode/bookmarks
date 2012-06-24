@@ -8,27 +8,23 @@
 return array(
     'basePath'=>dirname(__FILE__).DIRECTORY_SEPARATOR.'..',
     'name'=>'Bookmarks',
-
     'theme' => 'classic',
-    'language' => 'pl',
 
     // preloading 'log' component
     'preload'=>array('log', 'bootstrap'),
-
-    'modules'=>array(
-        'core',
-        'account',
-        'bookmarks',
-    ),
-
-
 
     // autoloading model and component classes
     'import'=>array(
         'application.models.*',
         'application.components.*',
         'core.components.*',
-        'account.components.*',
+    ),
+
+    'modules'=>array(
+        'core',
+        'core',
+        'account',
+        'bookmarks',
     ),
 
     // application component
