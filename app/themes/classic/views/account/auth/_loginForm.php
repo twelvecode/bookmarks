@@ -11,7 +11,7 @@
     'buttonType' => 'submit',
     'type'       => 'primary',
     'icon'       => 'ok white',
-    'label'      => Yii::t('account', 'Log me in!'),
+    'label'      => Yii::t('AccountModule.general', 'Log me in!'),
 )); ?>
 
 <?php $this->endWidget(); ?>

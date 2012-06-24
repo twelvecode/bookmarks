@@ -29,6 +29,7 @@ class LoginForm extends \CFormModel
     {
         return array(
             array('login, password', 'required'),
+            array('keepSigned', 'boolean'),
         );
     }
 
@@ -37,9 +38,9 @@ class LoginForm extends \CFormModel
     public function attributeLabels()
     {
         return array(
-            'login' => Yii::t('account_form', 'Your username'),
-            'password' => Yii::t('account_form', 'Your password'),
-            'keepSigned' => Yii::t('account_form', 'Keep me signed in'),
+            'login' => Yii::t('AccountModule.forms', 'Your username'),
+            'password' => Yii::t('AccountModule.forms', 'Your password'),
+            'keepSigned' => Yii::t('AccountModule.forms', 'Keep me signed in'),
         );
     }
 
