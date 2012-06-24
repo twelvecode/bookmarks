@@ -11,7 +11,7 @@ if (file_exists($maintenanceFile))
 
 // Integrate Propel
 // Include the main Propel script
-require_once dirname(__FILE__) . '/../vendors/propel/runtime/lib/Propel.php';
+require_once dirname(__FILE__) . '/../vendor/propel/runtime/lib/Propel.php';
 
 // Initialize Propel with the runtime configuration
 Propel::init(dirname(__FILE__) . '/protected/config/modules-conf.php');

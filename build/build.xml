@@ -28,22 +28,28 @@
             </filterchain>
         </copy>
 
+        <copy file="schema.template.xml" tofile="schema.xml">
+            <filterchain>
+                <expandproperties />
+            </filterchain>
+        </copy>
+
         <if>
             <equals arg1="${host.os}" arg2="WINNT" />
             <then>
-                <exec command="..\vendors\propel\generator\bin\propel-gen.bat convert-conf" passthru="true" />
-                <exec command="..\vendors\propel\generator\bin\propel-gen.bat om" passthru="true" />
-                <exec command="..\vendors\propel\generator\bin\propel-gen.bat sql" passthru="true" />
-                <exec command="..\vendors\propel\generator\bin\propel-gen.bat insert-sql" passthru="true" />
+                <property name="phing.genDir" value="..\vendor\propel\generator\bin\" />
             </then>
             <else>
-                <exec command="../vendors/propel/generator/bin/propel-gen convert-conf" passthru="true" />
-                <exec command="../vendors/propel/generator/bin/propel-gen om" passthru="true" />
-                <exec command="../vendors/propel/generator/bin/propel-gen sql" passthru="true" />
-                <exec command="../vendors/propel/generator/bin/propel-gen insert-sql" passthru="true" />
+                <property name="phing.genDir" value="../vendor/propel/generator/bin/" />
             </else>
         </if>
 
+        <exec command="${phing.genDir}propel-gen convert-conf" passthru="true" />
+        <exec command="${phing.genDir}propel-gen om" passthru="true" />
+        <exec command="${phing.genDir}propel-gen sql" passthru="true" />
+        <exec command="${phing.genDir}propel-gen insert-sql" passthru="true" />
+
+        <delete file="schema.xml" />
         <delete file="runtime-conf.xml" />
     </target>
 

@@ -84,7 +84,7 @@ return array(
 //            'class' => 'CClientScript',
 //            'packages' => array(
 //                'bootstrap' => array(
-//                    'basePath' => realpath(dirname(__FILE__) . '/../../themes/classic/vendors/bootstrap'),
+//                    'basePath' => realpath(dirname(__FILE__) . '/../../themes/classic/vendor/bootstrap'),
 //                    'js' => array(
 //                        'js/bootstrap.min.js',
 //                    ),
@@ -100,9 +100,9 @@ return array(
 
     // application-level parameters that can be accessed
     // using Yii::app()->params['paramName']
-    'params'=>array(
+    'params' => array(
         // this is used in contact page
-        'adminEmail'=>'gm.godlewski@twelvecode.com',
-        'version' => '0.1.0',
+        'adminEmail' => 'gm.godlewski@twelvecode.com',
+        'version'    => '0.1.0',
     ),
 );
