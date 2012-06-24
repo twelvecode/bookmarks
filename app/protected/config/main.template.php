@@ -15,7 +15,6 @@ return array(
 
     'modules'=>array(
         'core',
-        'core',
         'account',
         'bookmarks',
     ),
@@ -25,6 +24,7 @@ return array(
         'application.models.*',
         'application.components.*',
         'core.components.*',
+        'account.components.*',
     ),
 
     // application component
